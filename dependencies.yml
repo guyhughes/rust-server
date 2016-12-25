@@ -1,0 +1,35 @@
+---
+- hosts: all
+  tasks:
+
+  - command: dpkg --add-architecture i386
+
+  - apt: 
+      update_cache: yes
+      name:
+        - mailutils
+        - postfix
+        - curl
+        - wget
+        - file
+        - gzip
+        - bzip2
+        - bsdmainutils
+        - python
+        - util-linux
+        - tmux
+        - mosh
+        - lib32gcc1
+        - libstdc++6
+        - libstdc++6:i386
+
+  - user: 
+      name: rustserver
+
+  - get_url:
+      url: https://gameservermanagers.com/dl/rustserver
+      dest: /home/rustserver
+      mode: 700
+      owner: rustserver
+      group: rustserver
+
